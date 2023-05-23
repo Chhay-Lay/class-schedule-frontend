@@ -13,15 +13,8 @@
         <v-icon style="font-size: 28px">mdi-menu</v-icon>
       </template>
     </v-btn>
-    <v-toolbar-title>Vue Material Admin</v-toolbar-title>
+    <v-toolbar-title>Class schedule generator</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn
-      href="https://flatlogic.com/templates/vue-material-template-full/demo"
-      class="d-none d-sm-flex mr-5"
-      outlined
-      color="error">
-      Unlock Full Version</v-btn>
-    <Search />
 
     <v-menu
       offset-y
@@ -181,11 +174,10 @@
 <script>
 import {mapActions, mapState} from 'vuex'
   import config from '../../config';
-  import Search from "@/components/Search/Search";
 
   export default {
     name: 'Header',
-    components: { Search },
+    components: { },
     data: () => ({
       config,
       searchCollapse: true,

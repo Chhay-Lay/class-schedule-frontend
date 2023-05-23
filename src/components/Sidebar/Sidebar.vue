@@ -10,10 +10,6 @@
     :mini-variant-width="sidebarMinWidth"
     :class="{'drawer-mini': !DRAWER_STATE}">
 
-    <div class="v-list">
-      <a class="v-list-item v-list-item--link grey--text text-sm-h6" target="_blank" href="https://flatlogic.com/generator">Generate App</a>
-    </div>
-
     <v-list>
       <template v-for="(item, i) in items">
         <v-row
@@ -107,10 +103,12 @@ import {mapActions, mapState} from 'vuex'
     data(){
       return {
         items: [
-          { title: 'Dashboard', icon: 'mdi-home', link: '/dashboard' },
-          { title: 'Typography', icon: 'mdi-format-size', link: '/typography' },
-          { title: 'Tables', icon: 'mdi-grid-large', link: '/tables' },
-          { title: 'Notifications', icon: 'mdi-bell-outline', link: '/notifications' },
+          { title: 'Dashboard', icon: 'mdi-monitor-dashboard', link: '/dashboard' },
+          { title: 'Rooms', icon: 'mdi-home', link: '/Rooms' },
+          { title: 'Courses', icon: 'mdi-book', link: '/Courses' },
+          { title: 'Professors', icon: 'mdi-school', link: '/Professors' },
+          { title: 'Classes', icon: 'mdi-google-classroom', link: '/Classes' },
+          { title: 'Times', icon: 'mdi-clock-outline', link: '/Times' },
           {
             title: 'UI Elements',
             icon: 'mdi-image-filter-none',
@@ -122,17 +120,6 @@ import {mapActions, mapState} from 'vuex'
               { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
             ],
           },
-          { divider: true },
-          { heading: 'HELP' },
-          { title: 'Library', icon: 'mdi-book-variant-multiple', href: 'https://flatlogic.com/templates'},
-          { title: 'Support', icon: 'mdi-forum', href: 'https://flatlogic.com/forum/'},
-          { title: 'FAQ', icon: 'mdi-help-circle-outline', href:'https://flatlogic.com/templates/vue-material-template'},
-          { divider: true },
-          { heading: 'PROJECTS' },
-          { title: 'My recent', icon: 'mdi-circle-medium', color: 'warning'},
-          { title: 'Starred', icon: 'mdi-circle-medium', color: 'primary'},
-          { title: 'Background', icon: 'mdi-circle-medium', color: 'error'}
-
         ],
         sidebarWidth: 240,
         sidebarMinWidth: 96

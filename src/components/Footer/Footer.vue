@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-footer class="px-0 mt-10" color="transparent">
     <v-row no-gutters>
       <div>
@@ -53,4 +53,4 @@ export default {
 </script>
 
 <style src="./Footer.scss" lang="scss"/>
-
+ -->

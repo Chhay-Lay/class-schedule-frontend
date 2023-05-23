@@ -5,12 +5,12 @@ import Layout from '@/components/Layout/Layout';
 
 // Pages
 import Dashboard from '@/pages/Dashboard/Dashboard';
-import Typography from '@/pages/Typography/Typography'
-import Tables from '@/pages/Tables/Basic'
-import Notifications from '@/pages/Notifications/Notifications'
+import Rooms from '@/pages/Rooms'
+import Courses from '@/pages/Courses'
+import Professors from '@/pages/Professors'
 import Icons from '@/pages/Icons/Icons'
-import Charts from '@/pages/Charts/Charts'
-import Maps from '@/pages/Maps/Google'
+import Times from '@/pages/Times'
+import Classes from '@/pages/Classes'
 import Error from "@/pages/Error/Error";
 import Login from "@/pages/Login/Login";
 
@@ -35,19 +35,19 @@ export default new Router({
         component: Dashboard,
       },
       {
-        path: 'typography',
-        name: 'Typography',
-        component: Typography,
+        path: 'rooms',
+        name: 'Rooms',
+        component: Rooms,
       },
       {
-        path: 'tables',
-        name: 'Tables',
-        component: Tables
+        path: 'courses',
+        name: 'Courses',
+        component: Courses
       },
       {
-        path: 'notifications',
-        name: 'Notifications',
-        component: Notifications
+        path: 'Professors',
+        name: 'Professors',
+        component: Professors
       },
       {
         path: 'icons',
@@ -55,14 +55,14 @@ export default new Router({
         component: Icons
       },
       {
-        path: 'charts',
-        name: 'Charts',
-        component: Charts
+        path: 'times',
+        name: 'Times',
+        component: Times
       },
       {
-        path: 'maps',
-        name: 'Maps',
-        component: Maps
+        path: 'classes',
+        name: 'Classes',
+        component: Classes
       },
     ],
   },
