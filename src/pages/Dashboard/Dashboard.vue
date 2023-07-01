@@ -17,10 +17,10 @@
                   Rooms
                 </h2>
                 <h1>
-                  7
+                  {{ dashboardData.rooms.value }}
                 </h1>
               </v-list-item-content>
-              
+
               <v-icon size="75">
                 mdi-home
               </v-icon>
@@ -39,10 +39,10 @@
                   Courses
                 </h2>
                 <h1>
-                  7
+                  {{ dashboardData.courses.value }}
                 </h1>
               </v-list-item-content>
-              
+
               <v-icon size="75">
                 mdi-book
               </v-icon>
@@ -61,10 +61,10 @@
                   Professors
                 </h2>
                 <h1>
-                  7
+                  {{ dashboardData.professors.value }}
                 </h1>
               </v-list-item-content>
-              
+
               <v-icon size="75">
                 mdi-school
               </v-icon>
@@ -83,10 +83,10 @@
                   Classes
                 </h2>
                 <h1>
-                  7
+                  {{ dashboardData.classes.value }}
                 </h1>
               </v-list-item-content>
-              
+
               <v-icon size="75">
                 mdi-google-classroom
               </v-icon>
@@ -140,47 +140,26 @@
 </template>
 
 <script>
-import mock from "./mock";
+import axios from "../../axios.js";
 
 export default {
-  name: "Dashboard",
   components: {
   },
-  data() {
+  data () {
     return {
-      mock,
-      apexLoading: false,
-      value: this.getRandomInt(10, 90),
-      value2: this.getRandomInt(10, 90),
-      mainApexAreaSelect: "Daily",
-    };
+      dashboardData: {},
+    }
   },
   methods: {
-    getRandomDataForTrends() {
-      const arr = [];
-      for (let i = 0; i < 12; i += 1) {
-        arr.push(Math.random().toFixed(1) * 10);
-      }
-      return arr;
-    },
-    generatePieSeries() {
-      let series = [];
-
-      for (let i = 0; i < 4; i++) {
-        let y = Math.floor(Math.random() * (500 - 100 + 100)) + 100;
-        series.push(y);
-      }
-      return series;
-    },
-    getRandomInt(min, max) {
-      let rand = min - 0.5 + Math.random() * (max - min + 1);
-      return Math.round(rand);
-    },
   },
-  mounted() {
-    setTimeout(() => {
-      this.apexLoading = true;
+  mounted () {
+    axios.get("/dashboard")
+    .then((response) => {
+      this.dashboardData = response.data.data;
+    })
+    .catch((error) => {
+      console.error(error);
     });
-  },
-};
+  }
+}
 </script>

@@ -17,6 +17,16 @@ Vue.use(VueGoogleMaps, {
 
 Vue.config.productionTip = false
 
+// helper function
+Vue.prototype.$isArrayOfObj = function(array) {
+  if (Array.isArray(array)) {
+    if (array.length > 0) {
+      return typeof array[0] === 'object';
+    }
+  }
+  return false;
+};
+
 new Vue({
   vuetify,
   router,

@@ -94,53 +94,42 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
-  export default {
-    props: {
-        source: String,
-    },
-    data(){
-      return {
-        items: [
-          { title: 'Dashboard', icon: 'mdi-monitor-dashboard', link: '/dashboard' },
-          { title: 'Rooms', icon: 'mdi-home', link: '/Rooms' },
-          { title: 'Courses', icon: 'mdi-book', link: '/Courses' },
-          { title: 'Professors', icon: 'mdi-school', link: '/Professors' },
-          { title: 'Classes', icon: 'mdi-google-classroom', link: '/Classes' },
-          { title: 'Times', icon: 'mdi-clock-outline', link: '/Times' },
-          {
-            title: 'UI Elements',
-            icon: 'mdi-image-filter-none',
-            link: '/icons',
-            model: false,
-            children: [
-              { title: 'Icons', icon: 'mdi-circle-small', link: '/icons'},
-              { title: 'Charts', icon: 'mdi-circle-small', link: '/charts'},
-              { title: 'Maps', icon: 'mdi-circle-small', link: '/maps'},
-            ],
-          },
-        ],
-        sidebarWidth: 240,
-        sidebarMinWidth: 96
-      }
-    },
-    computed: {
-      ...mapState(['drawer']),
-      DRAWER_STATE: {
-        get() {
-          return this.drawer
-        },
-        set(newValue) {
-          if (newValue === this.drawer) return;
-          this.TOGGLE_DRAWER();
-        }
-      }
-    },
-    methods: {
-      ...mapActions([ 'TOGGLE_DRAWER' ]),
+export default {
+  props: {
+    source: String
+  },
+  data () {
+    return {
+      items: [
+        { title: 'Dashboard', icon: 'mdi-monitor-dashboard', link: '/dashboard' },
+        { title: 'Rooms', icon: 'mdi-home', link: '/Rooms' },
+        { title: 'Courses', icon: 'mdi-book', link: '/Courses' },
+        { title: 'Professors', icon: 'mdi-school', link: '/Professors' },
+        { title: 'Classes', icon: 'mdi-google-classroom', link: '/Classes' },
+        { title: 'Times Period', icon: 'mdi-clock-outline', link: '/Times' },
+      ],
+      sidebarWidth: 240,
+      sidebarMinWidth: 96
     }
+  },
+  computed: {
+    ...mapState(['drawer']),
+    DRAWER_STATE: {
+      get () {
+        return this.drawer
+      },
+      set (newValue) {
+        if (newValue === this.drawer) return
+        this.TOGGLE_DRAWER()
+      }
+    }
+  },
+  methods: {
+    ...mapActions(['TOGGLE_DRAWER'])
   }
+}
 </script>
 
 <style src="./Sidebar.scss" lang="scss"/>
