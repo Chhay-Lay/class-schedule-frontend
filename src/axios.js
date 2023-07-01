@@ -6,11 +6,11 @@ const instance = axios.create({
 })
 
 const refreshToken = async () => {
-  const response = await axios.post('/api/v1/refresh', {
+  const response = await axios.post('/refresh', {
     token: localStorage.getItem('refresh-token', refresh)
   });
 
-  const { token, refresh } = response.data;
+  const { token, refresh } = response.data.data;
 
   localStorage.setItem('token', token);
   localStorage.setItem('refresh-token', refresh);
