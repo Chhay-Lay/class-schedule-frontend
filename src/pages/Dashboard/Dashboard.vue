@@ -99,34 +99,24 @@
               <p>Schedule</p>
               <v-spacer></v-spacer>
             </v-card-title>
+            <div class="text-center">
+              <v-btn>Generate Schedule</v-btn>
+            </div>
             <v-card-text class="pa-0">
               <v-simple-table>
                 <template v-slot:default>
                   <thead class="pl-2">
                     <tr>
-                      <th class="text-left pa-6">NAME</th>
-                      <th class="text-left pa-6">STATUS</th>
-                      <th class="text-left">PRINT</th>
+                      <th width="40%" class="text-left pa-6">NAME</th>
+                      <th width="40%" class="text-left pa-6">STATUS</th>
+                      <th width="20%" class="text-left">PRINT</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="item in mock.table" :key="item.name">
+                    <tr v-for="item in timeTables" :key="item.id">
                       <td class="pa-6">{{ item.name }}</td>
-                      <td v-if="item.status === 'Sent'">
-                        <v-chip link color="success" class="ma-2 ml-0">
-                          Sent
-                        </v-chip>
-                      </td>
-                      <td v-else-if="item.status === 'Pending'">
-                        <v-chip link color="warning" class="ma-2 ml-0">
-                          Pending
-                        </v-chip>
-                      </td>
-                      <td v-else-if="item.status === 'Declined'">
-                        <v-chip link color="secondary" class="ma-2 ml-0">
-                          Declined
-                        </v-chip>
-                      </td>
+                      <td class="pa-6">{{ item.status }}</td>
+                      <td class="pa-6">{{ item.file_url }}</td>
                     </tr>
                   </tbody>
                 </template>
@@ -148,6 +138,7 @@ export default {
   data () {
     return {
       dashboardData: {},
+      timeTables: []
     }
   },
   methods: {
@@ -156,6 +147,14 @@ export default {
     axios.get("/dashboard")
     .then((response) => {
       this.dashboardData = response.data.data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    axios.get("/time-table")
+    .then((response) => {
+      this.timeTables = response.data.data;
     })
     .catch((error) => {
       console.error(error);
