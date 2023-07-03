@@ -3,6 +3,11 @@ import axios from 'axios';
 
 const instance = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
+    headers: {
+      common: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token') // Replace with your bearer token
+      }
+    }
 })
 
 const refreshToken = async () => {

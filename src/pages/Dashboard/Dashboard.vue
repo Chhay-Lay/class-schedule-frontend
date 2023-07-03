@@ -109,14 +109,16 @@
                     <tr>
                       <th width="40%" class="text-left pa-6">NAME</th>
                       <th width="40%" class="text-left pa-6">STATUS</th>
-                      <th width="20%" class="text-left">PRINT</th>
+                      <th width="20%" class="text-left pl-6">PRINT</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="item in timeTables" :key="item.id">
                       <td class="pa-6">{{ item.name }}</td>
                       <td class="pa-6">{{ item.status }}</td>
-                      <td class="pa-6">{{ item.file_url }}</td>
+                      <td class="pa-6">
+                        <v-btn @click="downloadPdf(item.id)">PRINTS</v-btn>
+                      </td>
                     </tr>
                   </tbody>
                 </template>
@@ -142,6 +144,27 @@ export default {
     }
   },
   methods: {
+    downloadPdf(id) {
+      // Make an API request to retrieve the PDF file
+      axios.get(`time-table/get-pdf/${id}`, {
+          responseType: 'blob' // Set the response type to blob
+        })
+        .then(response => {
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+
+          // Open a new window with the PDF URL
+          const printWindow = window.open(url, '_blank');
+          
+          // Wait for the window to load and then trigger the print function
+          printWindow.onload = () => {
+            printWindow.print();
+          };
+        })
+        .catch(error => {
+          console.error('Error downloading PDF:', error);
+        });
+    }
   },
   mounted () {
     axios.get("/dashboard")
