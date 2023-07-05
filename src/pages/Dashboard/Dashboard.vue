@@ -100,7 +100,7 @@
               <v-spacer></v-spacer>
             </v-card-title>
             <div class="text-center">
-              <v-btn>Generate Schedule</v-btn>
+              <v-btn @click="timeTableDialog = true">Generate Schedule</v-btn>
             </div>
             <v-card-text class="pa-0">
               <v-simple-table>
@@ -124,6 +124,7 @@
                 </template>
               </v-simple-table>
             </v-card-text>
+            <generate-timetable-dialog :timeTableDialog="timeTableDialog" @dialog-closed="dialogClosed"/>
           </v-card>
         </v-col>
       </v-row>
@@ -133,14 +134,17 @@
 
 <script>
 import axios from "../../axios.js";
+import GenerateTimetableDialog from "./GenerateTimetableDialog.vue";
 
 export default {
   components: {
+    GenerateTimetableDialog
   },
   data () {
     return {
       dashboardData: {},
-      timeTables: []
+      timeTables: [],
+      timeTableDialog: false
     }
   },
   methods: {
@@ -164,6 +168,10 @@ export default {
         .catch(error => {
           console.error('Error downloading PDF:', error);
         });
+    },
+    dialogClosed() {
+      this.timeTableDialog = false;
+      this.getCourses();
     }
   },
   mounted () {
